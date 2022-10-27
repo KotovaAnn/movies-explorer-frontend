@@ -1,0 +1,90 @@
+.moviesCard {
+  position: relative;
+  max-width: 364px;
+  height: 271px;
+  background: #FDFDFD;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+  list-style-type: none;
+  box-sizing: border-box;
+}
+.moviesCard__title {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  color: #000;
+  margin: 0 0 9px 14px;
+  padding-top: 14px;
+}
+.moviesCard__description {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px; 
+  color: #A0A0A0;
+  margin: 0 0 14px 14px;
+}
+.moviesCard__like-button {
+  position: absolute;
+  top: 19px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  background: url(./../../images/like-button.svg) no-repeat;
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+}
+.moviesCard__like-button_active {
+  position: absolute;
+  top: 19px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  background: url(./../../images/like-button-active.svg) no-repeat;
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+}
+.moviesCard__remove-button {
+  position: absolute;
+  top: 19px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  background: url(./../../images/remove-bitton.svg) no-repeat;
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+} 
+.moviesCard__image {
+  max-width: 364px; 
+  height: 203px;
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .moviesCard {
+    width: 339px;
+    height: 258px;
+  }
+  .moviesCard__image {
+    width: 339px; 
+    height: 190px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .moviesCard {
+    position: relative;
+    max-width: 300px;
+    height: 236px;
+    background: #FDFDFD;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+    list-style-type: none;
+    box-sizing: border-box;
+  }
+  .moviesCard__image {
+    width: 300px;
+    height: 168px;
+  }
+}

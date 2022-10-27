@@ -1,0 +1,118 @@
+.aboute-project {
+  margin: 110px 70px 110px 70px;
+}
+.aboute-project__dedline-block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: spase-between;
+}
+.aboute-project__block-content {
+  width: 50%;
+  margin: 70px 0 110px 0;
+}
+.aboute-project__subtitle {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  color: #000;
+  margin: 0 0 26px 0;
+}
+.aboute-project__text {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #000;
+  margin: 0;
+}
+.aboute-project__chart {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(70px, 228px) minmax(70px, 912px);
+  text-align: center;
+}
+.aboute-project__chart-block {
+  box-sizing: border-box;
+  padding: 9px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
+}
+.aboute-project__chart-block_black { 
+  background: #000;
+  color: #fff;
+}
+.aboute-project__chart-block_gray {
+  background: #f2f2f2;
+  color: #000;
+}
+.aboute-project__chart-block_description {
+  font-weight: 500;
+  color: #a0a0a0;
+  margin-top: 14px;
+}
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+  .aboute-project {
+    margin: 90px 50px 90px 50px;
+  }
+  .aboute-project__block-content {
+    width: 50%;
+    margin: 70px 0 93px 0;
+  }
+  .aboute-project__subtitle {
+    margin: 0 0 22px 0;
+  }
+  .aboute-project__text {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+}
+@media screen and (max-width: 600px) {
+  .aboute-project {
+    margin: 60px 18px 70px 18px;
+    min-width: 292px;
+  }
+  .aboute-project__dedline-block{
+    justify-content: center;
+  }
+  .aboute-project__block-content {
+    width: 100%;
+    margin: 0 0 56px 0;
+  }
+  .aboute-project__subtitle {
+    font-size: 18px;
+    margin: 0 0 16px 0;
+  }
+  .aboute-project__text {
+    font-size: 11px;
+    margin: 0;
+  }
+  .aboute-project__chart {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(90px, 190px) minmax(165px, 349px);
+    text-align: center;
+  }
+  .aboute-project__chart-block {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 1.1;
+  }
+  .aboute-project__chart-block_black { 
+    font-family: 'Inter', Arial, sans-serif;
+  }
+  .aboute-project__chart-block_gray {
+    font-family: 'Inter', Arial, sans-serif;
+  }
+  .aboute-project__chart-block_description {
+    font-family: 'Suisse Intl', Arial, sans-serif;
+  }
+}
