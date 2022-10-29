@@ -23,6 +23,7 @@ function SearchForm(props) {
         type="text"
         id="search-form-text-input"
         placeholder="Фильм"
+        required
         name="searchFormInput"
         maxLength="30"
         value={movie}

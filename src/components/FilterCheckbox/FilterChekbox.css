@@ -57,8 +57,10 @@
 }
 @media screen and (max-width: 767px) {
   .filter-checkbox {
-    top: 198px;
-    left: 86px;
+    position: static;
+    display: block;
+    width: 150px;
+    margin: 45px auto;
   }
   .filter-checkbox__label {
     width: 149px;

@@ -7,8 +7,11 @@
   justify-content: spase-between;
 }
 .aboute-project__block-content {
-  width: 50%;
+  width: calc(50% - 30px);
   margin: 70px 0 110px 0;
+}
+.aboute-project__block-content:first-of-type {
+  margin: 70px 30px 110px 0;
 }
 .aboute-project__subtitle {
   font-family: 'Inter', Arial, sans-serif;
@@ -72,7 +75,13 @@
     font-size: 12px;
     line-height: 1.5;
   }
-
+  .aboute-project__block-content {
+    width: calc(50% - 30px);
+    margin: 70px 0 93px 0;
+  }
+  .aboute-project__block-content:first-of-type {
+    margin: 70px 30px 93px 0;
+  }
 }
 @media screen and (max-width: 600px) {
   .aboute-project {

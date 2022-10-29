@@ -1,7 +1,7 @@
 .moviesCard {
   position: relative;
   max-width: 364px;
-  height: 271px;
+  max-height: 271px;
   background: #FDFDFD;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
   list-style-type: none;
@@ -60,8 +60,7 @@
   cursor: pointer;
 } 
 .moviesCard__image {
-  max-width: 364px; 
-  height: 203px;
+  width: 100%; 
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .moviesCard {

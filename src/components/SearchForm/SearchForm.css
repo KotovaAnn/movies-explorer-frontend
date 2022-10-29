@@ -27,7 +27,7 @@
   top: 93px;
 }
 .search-form__input:focus {
-  outline: none;
+  outline-color: #cecdcd;
 }
 .search-form__btn {
   position: absolute;
@@ -39,6 +39,9 @@
   border: none;
   border-right: 1px solid #E8E8E8;
   cursor: pointer;
+}
+.search-form__btn:hover {
+  opacity: .7;
 }
 .search-form__btn:disabled {
   cursor: not-allowed;
@@ -92,6 +95,6 @@
     border-right: none;
   }
   .search-form__border {
-    margin: 109px 0 10px 0;
+    margin: 44px 0 10px 0;
   }
 }
