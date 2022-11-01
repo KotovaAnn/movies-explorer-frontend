@@ -1,0 +1,202 @@
+.profile {
+  padding: 74px 0 70px 0;
+}
+.profile__title {
+  font-family: 'Inter', Arial, sans-serif;;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  text-align: center;
+  color: #000;
+  margin: 0 0 123px 0;
+}
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  max-width: 410px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+.profile-form__inputs-fieldset {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+.profile-form__input-container {
+  padding-bottom: 13px;
+  position: relative;
+  margin-bottom: 13px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.profile-form__input-container:last-of-type {
+  padding-bottom: 16px;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+.profile-form__input-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 11px;
+  line-height: 1.18;
+  color: #000;
+}
+.profile-form__input {
+  box-sizing: border-box;
+  width: 80%;
+  padding: 3px;
+  margin: 0;
+  text-align: right;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 11px;
+  line-height: 1.18;
+  color: #000;
+  background: none;
+  border: none;
+}
+.profile-form__input-error {
+  color: #FF4062;
+}
+.profile__edit-button {
+  width: 100%;
+  margin: 220px 0 16px 0;
+  text-align: center;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.1;
+  color: #000;
+  cursor: pointer;
+  border: none;
+  background: #fff;
+}
+.profile__save-button {
+  width: 100%;
+  margin: 220px 0 16px 0;
+  text-align: center;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.1;
+  color: #000;
+  cursor: pointer;
+  border: none;
+  background: #fff;
+}
+.profile__save-button_no-active {
+  width: 100%;
+  margin: 220px 0 16px 0;
+  text-align: center;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.1;
+  color: #A0A0A0;
+  cursor: pointer;
+  border: none;
+  background: #fff;
+}
+.profile__signout-button {
+  border: none;
+  background: #fff;
+  text-align: center; 
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.2;
+  color: #FF4062;
+  padding: 0;
+}
+.profile-form__error {
+  display: block;
+  position: absolute;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.2;
+  color: #FF4062;
+  top: 35px;
+}
+@media screen and (min-width: 751px) and (max-width: 1024px) {
+  .profile {
+    padding: 236px 0 269px 0;
+  }
+  .profile__title {
+    margin: 0 0 96px 0;
+  }
+  .profile-form__input-container {
+    padding-bottom: 16px;
+    margin-bottom: 17px;
+  }
+  .profile-form__input-container:last-of-type {
+    padding-bottom: 16px;
+  }
+  .profile__edit-button {
+    margin: 194px 0 16px 0;
+  }
+  .profile__save-button {
+    margin: 194px 0 16px 0;
+  }
+  .profile__save-button_no-active {
+    margin: 194px 0 16px 0;
+  }
+}
+@media screen and (max-width: 750px) {
+  .profile {
+    padding: 70px 0 40px 0;
+  }
+  .profile__title {
+    margin: 0 0 80px 0;
+  }
+  .profile-form {
+    max-width: 410px;
+    min-width: 260px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 30px;
+  }
+  .profile-form__input-container {
+    max-width: 410px;
+    min-width: 260px;
+    padding-bottom: 16px;
+    margin-bottom: 17px;
+  }
+  .profile__edit-button {
+    margin: 363px 0 16px 0;
+    font-size: 12px;
+  }
+  .profile__save-button {
+    margin: 363px 0 16px 0;
+    font-size: 12px;
+  }
+  .profile__save-button_no-active {
+    margin: 363px 0 16px 0;
+    font-size: 12px;
+  }
+  .profile__signout-button {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  .profile-form__error {
+    font-size: 9px;
+    line-height: 1.1;
+  }
+}
