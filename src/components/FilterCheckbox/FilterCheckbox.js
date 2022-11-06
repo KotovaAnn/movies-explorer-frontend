@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function FilterCheckbox(props) {
   const [onFocus, setOnFocus] = useState(false);
-  const [shortfilm, setShortfilm] = useState(false);
+  const [checkedShortFilms, setCheckedShortFilms] = useState(false);
 
   function handleOnFocus() {
     setOnFocus(!onFocus);
@@ -12,10 +12,21 @@ function FilterCheckbox(props) {
     setOnFocus(false);
   };
 
-  function handleChange(evt) {
-    setShortfilm(evt.target.value);
-  }
+  const handleCheckShortFilms = () => {
+    setCheckedShortFilms(!checkedShortFilms);
+    localStorage.setItem('checkbox', !checkedShortFilms);
+  };
 
+  useEffect(() => {
+    const checkbox = localStorage.getItem('checkbox');
+    setCheckedShortFilms(JSON.parse(checkbox));
+  }, []);
+
+  useEffect(() => {  
+    const storageValue = localStorage.getItem('value');
+    props.filterMovies(storageValue);
+  }, [props.filterMovies, checkedShortFilms]);
+  
   return (
     <div className="filter-checkbox">
       <label
@@ -31,9 +42,7 @@ function FilterCheckbox(props) {
         onBlur={handleOffFocus}
         id='filter-checkbox-shortfilm'
         name='filterShortfilm'
-        onChange={handleChange}
-        value={shortfilm}
-        checked={shortfilm || ''}
+        onChange={handleCheckShortFilms}
         />
         <span className="filter-checkbox__slider"/>
         Короткометражки

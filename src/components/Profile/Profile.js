@@ -49,6 +49,7 @@ function Profile(props) {
   }
 
   function handleEditProfile() {
+    console.log(currentUser)
     setIsEdited(!isEdited);
   }
 

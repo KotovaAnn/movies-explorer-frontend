@@ -14,7 +14,7 @@ function SearchForm(props) {
     evt.preventDefault();
     props.onSubmit(movie);
   };
-
+  
   return (
     <form className="search-form" onSubmit={handleSubmit}>
       <img className="search-form__icon" src={searchIcon} alt="Лупа"/>
@@ -26,10 +26,10 @@ function SearchForm(props) {
         required
         name="searchFormInput"
         maxLength="30"
-        value={movie}
+        value={movie || ""}
         onChange={handleChange}
         />
-      <FilterCheckbox />
+      <FilterCheckbox filterMovies={props.filterMovies}/>
       <button className="search-form__btn" type="submit"></button>
       <div className="search-form__border"></div>
     </form>

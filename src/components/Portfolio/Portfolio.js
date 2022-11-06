@@ -21,7 +21,7 @@ function Portfolio() {
 
   const portfolioLinksMarkup = portfolioLinks.map((item) => (
     <li className="Portfolio__link-item" key={item.id}>
-      <a className="Portfolio__link" href={item.link} target="_blank" without rel="noreferrer">
+      <a className="Portfolio__link" href={item.link} target="_blank" rel="noreferrer">
         {item.name}
         <img className="Portfolio__link-arrow" src={Arrow} alt="Стрелка" /> 
       </a>
