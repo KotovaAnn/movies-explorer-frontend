@@ -29,7 +29,7 @@ function SearchForm(props) {
         value={movie || ""}
         onChange={handleChange}
         />
-      <FilterCheckbox filterMovies={props.filterMovies}/>
+      <FilterCheckbox filterMovies={props.filterMovies} movie={movie}/>
       <button className="search-form__btn" type="submit"></button>
       <div className="search-form__border"></div>
     </form>

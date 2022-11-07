@@ -14,19 +14,12 @@ function FilterCheckbox(props) {
 
   const handleCheckShortFilms = () => {
     setCheckedShortFilms(!checkedShortFilms);
-    localStorage.setItem('checkbox', !checkedShortFilms);
+    //localStorage.setItem('checkbox', checkedShortFilms);
+    if(props.movie) {
+      props.filterMovies(props.movie, !checkedShortFilms);
+    }
   };
-
-  useEffect(() => {
-    const checkbox = localStorage.getItem('checkbox');
-    setCheckedShortFilms(JSON.parse(checkbox));
-  }, []);
-
-  useEffect(() => {  
-    const storageValue = localStorage.getItem('value');
-    props.filterMovies(storageValue);
-  }, [props.filterMovies, checkedShortFilms]);
-  
+ 
   return (
     <div className="filter-checkbox">
       <label
@@ -42,7 +35,8 @@ function FilterCheckbox(props) {
         onBlur={handleOffFocus}
         id='filter-checkbox-shortfilm'
         name='filterShortfilm'
-        onChange={handleCheckShortFilms}
+        //onChange={handleCheckShortFilms}
+        onClick={handleCheckShortFilms}
         />
         <span className="filter-checkbox__slider"/>
         Короткометражки

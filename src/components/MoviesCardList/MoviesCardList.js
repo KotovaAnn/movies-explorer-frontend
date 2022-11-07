@@ -17,7 +17,7 @@ function MoviesCardList(props) {
             <ul className='movies-cardlist__movies-list'>
               {
                 films.map((item) => { 
-                  return (<MoviesCard movieData={item} key={item._id}/>)
+                  return <MoviesCard movieData={item} key={item.id}/>
                 })
               }
             </ul>

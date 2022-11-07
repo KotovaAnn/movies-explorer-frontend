@@ -35,10 +35,8 @@ function App() {
   const [moviesData, setMoviesData] = useState([]);
   const [isFoundMovies, setIsFoundMovies] = useState([]);
   const [isNoFoundMovies, setIsNoFoundMovies] = useState(false);
-  const [checkedShortFilms, setCheckedShortFilms] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [moreCards, setMoreCards] = useState(0);
-
   function handleRegistration(name, email, password) {
     auth.register(name, email, password)
       .then((res) => {
@@ -154,23 +152,49 @@ function App() {
     handleResize();
   };
 
-  const filterMovies = useCallback((keyWord) => {
+  const filterMovies = useCallback((keyWord, checkedShortFilms) => {
+
     const localMoviesData = JSON.parse(localStorage.getItem('movies'));
     if (localMoviesData) {
-      const foundMovies = onFilterMovies(keyWord, localMoviesData);
+      const foundMovies = onFilterMovies(keyWord, localMoviesData, checkedShortFilms);
       localStorage.setItem('found-movies', JSON.stringify(foundMovies));
       setIsFoundMovies(foundMovies);
       if (foundMovies.length === 0 || null) {
           setIsNoFoundMovies(true);
         } else {
           setIsNoFoundMovies(false);
+          if (windowWidth >= 1280) {
+            setMoviesData(isFoundMovies.slice(0, 12));
+            setMoreCards(3);
+          } else if (windowWidth > 480 && windowWidth < 1280) {
+            setMoviesData(isFoundMovies.slice(0, 8));
+            setMoreCards(2);
+          } else if (windowWidth <= 480) {
+            setMoviesData(isFoundMovies.slice(0, 5));
+            setMoreCards(2);
+          }
         }
       }
-    }, [checkedShortFilms]);
-    
-  
-  function onFilterMovies(keyWord, localMoviesData) {
-    const checkbox = localStorage.getItem('checkbox');
+    }, []);
+
+    useEffect(() => {
+      if (isFoundMovies === null) {
+        setMoviesData([]);
+        return;
+      }
+      if (windowWidth >= 1280) {
+        setMoviesData(isFoundMovies.slice(0, 12));
+        setMoreCards(3);
+      } else if (windowWidth > 480 && windowWidth < 1280) {
+        setMoviesData(isFoundMovies.slice(0, 8));
+        setMoreCards(2);
+      } else if (windowWidth <= 480) {
+        setMoviesData(isFoundMovies.slice(0, 5));
+        setMoreCards(2);
+      }
+    }, [isFoundMovies]);
+
+  function onFilterMovies(keyWord, localMoviesData, checkedShortFilms) {
     const searchedShortFilms = (item) => {
       return item.duration <= 40;
     };
@@ -179,7 +203,7 @@ function App() {
       return JSON.stringify(item.nameRU).toLowerCase().includes(keyWord.toLowerCase());
     };
     
-    if (checkbox === 'true') {
+    if (checkedShortFilms === true) {
       return localMoviesData.filter(searchedMovies).filter(searchedShortFilms);
     } else {
       return localMoviesData.filter(searchedMovies);
@@ -187,7 +211,6 @@ function App() {
   }
 
   function handleResize() {
-    //const foundMovies = JSON.parse(localStorage.getItem('found-movies'));
     if (isFoundMovies === null) {
       setMoviesData([]);
       return;
