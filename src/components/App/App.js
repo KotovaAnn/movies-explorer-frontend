@@ -130,7 +130,8 @@ function App() {
   }
 
   useEffect(() => {
-    mainApi.getInfoUser()
+    if(loggedIn) {
+      mainApi.getInfoUser()
       .then((res) => {
         getSavedMovies();
         setLoggedIn(true);
@@ -147,6 +148,7 @@ function App() {
         }
         console.log(err);
       });
+    }
   }, [history]);
 
   useEffect(() => {
