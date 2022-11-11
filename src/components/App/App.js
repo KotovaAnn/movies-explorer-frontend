@@ -67,9 +67,11 @@ function App() {
         localStorage.setItem('loggedIn', true);
         setCurrentUser(res);
         getUserInfo();
+        getSavedMovies();
         history.push('/movies');
       })
       .catch(err => {
+        setLoggedIn(false);
         localStorage.setItem('loggedIn', false);
         console.log(err);
         setIsInfotooltip(true);
@@ -105,34 +107,39 @@ function App() {
       });
   }
 
-  useEffect(() => {
+  function getSavedMovies() {
     mainApi.getSavedMovies()
-      .then(res => {
-        setSavedMoviesData(res);
-        localStorage.setItem('loggedIn', true);
-        localStorage.setItem('saved-movies', JSON.stringify(res));
-        setErrorGetSavedMovies(false);
-        if(res.length === 0) {
-          setIsNoFoundSavedMovies(true);
-        } else {
-          setIsNoFoundSavedMovies(false);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        setErrorGetSavedMovies(true);
-        localStorage.setItem('loggedIn', true);
-      });
-  }, [loggedIn]);
+    .then(res => {
+      setSavedMoviesData(res);
+      setLoggedIn(true);
+      localStorage.setItem('loggedIn', true);
+      localStorage.setItem('saved-movies', JSON.stringify(res));
+      setErrorGetSavedMovies(false);
+      if(res.length === 0) {
+        setIsNoFoundSavedMovies(true);
+      } else {
+        setIsNoFoundSavedMovies(false);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      setErrorGetSavedMovies(true);
+      setLoggedIn(false);
+      localStorage.setItem('loggedIn', false);
+    });
+  }
 
   useEffect(() => {
     mainApi.getInfoUser()
       .then((res) => {
+        getSavedMovies();
+        setLoggedIn(true);
         localStorage.setItem('loggedIn', true);
         setCurrentUser(res);
       })
       .catch((err) => {
         if (err === 'Ошибка: 401') {
+          setLoggedIn(false);
           localStorage.setItem('loggedIn', false);
           setSavedMoviesData([]);
           history.push('/');
