@@ -1,5 +1,4 @@
 function InfoTooltip(props) {
-  
     return (
       <div className={`info-tooltip ${(props.isOpen) && "info-tooltip_opened"}`}>
         <div className="info-tooltip__content">

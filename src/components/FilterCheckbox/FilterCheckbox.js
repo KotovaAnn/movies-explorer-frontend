@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function FilterCheckbox(props) {
   const [onFocus, setOnFocus] = useState(false);
   const [checkedShortFilms, setCheckedShortFilms] = useState(false);
+  const location = useLocation();
 
   function handleOnFocus() {
     setOnFocus(!onFocus);
@@ -14,9 +16,12 @@ function FilterCheckbox(props) {
 
   const handleCheckShortFilms = () => {
     setCheckedShortFilms(!checkedShortFilms);
-    //localStorage.setItem('checkbox', checkedShortFilms);
-    if(props.movie) {
+    if(location.pathname === '/movies' && props.movie) {
       props.filterMovies(props.movie, !checkedShortFilms);
+    } else if(location.pathname === '/saved-movies' && props.movie) {
+      console.log('функция чекбокса работает')
+      console.log(`чекбокса ${!checkedShortFilms}`)
+      props.filterSavedMovies(props.movie, !checkedShortFilms);
     }
   };
  
@@ -35,7 +40,6 @@ function FilterCheckbox(props) {
         onBlur={handleOffFocus}
         id='filter-checkbox-shortfilm'
         name='filterShortfilm'
-        //onChange={handleCheckShortFilms}
         onClick={handleCheckShortFilms}
         />
         <span className="filter-checkbox__slider"/>

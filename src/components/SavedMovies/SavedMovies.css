@@ -1,12 +1,16 @@
+.saved-movies {
+  min-height: 74vh;
+}
 .saved-movies__not-found-movies {
-  display: block;
-  max-width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 12px;
-  color: #ff4062;
+  color: #FF4062;
   text-align: center;
-  margin: 170px auto;
+  margin: 80px 0 -233px 0;
 }

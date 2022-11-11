@@ -39,17 +39,6 @@ class Api {
     .then(this._checkResponse);
   }
 
-  saveMovie(data) {
-    return fetch(`${this._url}/movies`, {
-      method: 'POST',
-      credentials: "include",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data),
-    }).then(this._checkResponse)
-  };
-
   getSavedMovies() {
     return fetch(`${this._url}/movies`, {
       method: 'GET',
@@ -57,6 +46,17 @@ class Api {
       headers: {
         'Content-Type': 'application/json'
       },
+    }).then(this._checkResponse)
+  };
+
+  saveMovie(movie) {
+    return fetch(`${this._url}/movies`, {
+      method: 'POST',
+      credentials: "include",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(movie),
     }).then(this._checkResponse)
   };
 

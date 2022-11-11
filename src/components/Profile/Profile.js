@@ -1,4 +1,3 @@
-import React from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useState, useEffect, useContext } from 'react';
 

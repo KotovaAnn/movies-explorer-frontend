@@ -10,18 +10,28 @@ function Movies(props) {
 
   return(
     <main className="movies">
+
       <SearchForm onSubmit={handleSubmit} filterMovies={props.filterMovies}/>
-      {!props.isLoadingData && props.isNoMoviesFound && (
-        <p className="movies__not-found-movies">'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'</p>
-      )}
-      {props.isLoadingData && (
+
+      {props.isLoading && (
         <Preloader />
       )}
+
+      {!props.isLoading && props.errorGetMovies && (
+        <p className="movies__not-found-movies">'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'</p>
+      )}
+
+      {!props.isLoading && props.isNoFoundMovies &&  (
+          <span className="movies-cardlist__notfound">Ничего не найдено</span>
+      )}
+
       <MoviesCardList
         moviesData={props.moviesData}
-        isNoFoundMovies={props.isNoFoundMovies}
+        handleClickMovie={props.handleClickMovie}
         handleShowMore={props.handleShowMore}
+        savedMoviesData={props.savedMoviesData}
         />
+
     </main>
   )
 }

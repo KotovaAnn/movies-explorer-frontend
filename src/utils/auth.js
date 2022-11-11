@@ -36,5 +36,9 @@ export function signout() {
   return fetch(`${BASE_URL}/signout`, {
     method: 'GET',
     credentials: "include",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
   }).then((res) => checkResponse(res));
 }

@@ -10,19 +10,18 @@ function MoviesCardList(props) {
     <section className='movies-cardlist'>
 
       {
-        (props.isNoFoundMovies ? (
-            <span className="movies-cardlist__notfound">Ничего не найдено</span>
-          ) :
-          (
-            <ul className='movies-cardlist__movies-list'>
-              {
-                films.map((item) => { 
-                  return <MoviesCard movieData={item} key={item.id}/>
-                })
-              }
-            </ul>
-          )
-        )
+        <ul className='movies-cardlist__movies-list'>
+          {
+            films.map((item) => { 
+              return <MoviesCard 
+                movieData={item}
+                handleClickMovie={props.handleClickMovie}
+                savedMoviesData={props.savedMoviesData}
+                deleteSavedMovie={props.deleteSavedMovie}
+                key={item.id}/>
+            })
+          }
+        </ul>
       }
 
       {

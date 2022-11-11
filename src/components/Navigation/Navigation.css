@@ -16,6 +16,9 @@
   margin-top: -5px;
   color: #000;
 }
+.navigation__active-link {
+  font-weight: 500;
+}
 .navigation__link_type_overlay-gray {
   position: absolute;
   top: 0;
@@ -32,6 +35,9 @@
   line-height: 1.1;
   text-align: center;
   padding: 0;
+}
+.navigation__active-link_type_overlay-gray {
+  border: 1px solid #e1e1e1;
 }
 @media screen and (min-width: 769px) {
   .navigation {
