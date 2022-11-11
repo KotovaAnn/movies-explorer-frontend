@@ -19,8 +19,6 @@ function FilterCheckbox(props) {
     if(location.pathname === '/movies' && props.movie) {
       props.filterMovies(props.movie, !checkedShortFilms);
     } else if(location.pathname === '/saved-movies' && props.movie) {
-      console.log('функция чекбокса работает')
-      console.log(`чекбокса ${!checkedShortFilms}`)
       props.filterSavedMovies(props.movie, !checkedShortFilms);
     }
   };
