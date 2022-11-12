@@ -9,7 +9,7 @@ Diploma project frontend
 Макет диплома: [ссылка] (https://drive.google.com/file/d/11fyeN5j6NwCqJbw3Bw2gUE6dpThupQ20/view?usp=sharing)
 
 ### Ссылка на пулреквест  
-Ссылка на пулреквест: [ссылка] https://github.com/KotovaAnn/movies-explorer-frontend/pull/2  
+Ссылка на пулреквест: [ссылка] https://github.com/KotovaAnn/movies-explorer-frontend/pull/3  
   
 ### Ссылка на сайт  
 Фронтенд: [ссылка] https://kot-movies-explore.nomoredomains.icu/movies  
