@@ -1,4 +1,3 @@
-import React from 'react';
 import AuthForm from '../AuthForm/AuthForm';
 import AuthFormLink from '../AuthFormLink/AuthFormLink';
 
@@ -10,4 +9,5 @@ function Register(props) {
     </div>
   )
 }
+
 export default Register;

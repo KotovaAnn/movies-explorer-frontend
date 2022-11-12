@@ -1,4 +1,3 @@
-import React from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useState, useEffect, useContext } from 'react';
 
@@ -49,6 +48,7 @@ function Profile(props) {
   }
 
   function handleEditProfile() {
+    console.log(currentUser)
     setIsEdited(!isEdited);
   }
 

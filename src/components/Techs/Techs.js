@@ -1,4 +1,3 @@
-import React from 'react';
 import MainTitle from '../MainTitle/MainTitle';
 
 function Techs(props) {
@@ -21,4 +20,5 @@ function Techs(props) {
     </section>
   )
 }
+
 export default Techs;

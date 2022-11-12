@@ -1,34 +1,37 @@
 import SearchForm from '../SearchForm/SearchForm';
+import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import { useState, useEffect } from 'react';
 
 function Movies(props) {
-  const [ErrorApiMovies, serErrorApiMovies] = useState(false);
 
-  useEffect(() => {
-    getError();
-  }, [props.apiResStatusGetMovies])
-
-  function getError() {
-    if(props.apiResStatusGetMovies) {
-      switch (props.apiResStatusGetMovies) {
-        case 200:
-          serErrorApiMovies(false);
-          break;
-        default:
-          serErrorApiMovies(true);
-          break;
-      };
-    }
+  function handleSubmit(data) {
+    props.onSubmit(data);
   }
 
   return(
     <main className="movies">
-      <SearchForm />
-      {ErrorApiMovies && (
-        <p className="movies__not-found-movies">Упс! Ничего не найдено...</p>
+
+      <SearchForm onSubmit={handleSubmit} filterMovies={props.filterMovies}/>
+
+      {props.isLoading && (
+        <Preloader />
       )}
-      <MoviesCardList dataMovies={props.dataMovies} ErrorApiMovies={ErrorApiMovies}/>
+
+      {!props.isLoading && props.errorGetMovies && (
+        <p className="movies__not-found-movies">'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'</p>
+      )}
+
+      {!props.isLoading && props.isNoFoundMovies &&  (
+          <span className="movies-cardlist__notfound">Ничего не найдено</span>
+      )}
+
+      <MoviesCardList
+        moviesData={props.moviesData}
+        handleClickMovie={props.handleClickMovie}
+        handleShowMore={props.handleShowMore}
+        savedMoviesData={props.savedMoviesData}
+        />
+
     </main>
   )
 }

@@ -121,6 +121,7 @@
   line-height: 1.2;
   color: #FF4062;
   padding: 0;
+  cursor: pointer;
 }
 .profile-form__error {
   display: block;

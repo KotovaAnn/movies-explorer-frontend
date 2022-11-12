@@ -31,6 +31,13 @@
   padding: 0;
   cursor: pointer;
 }
+.movies-cardlist__notfound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FF4062;
+  margin: 80px 0 -233px 0;
+}
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .movies-cardlist {
     width: 100%;
@@ -46,5 +53,10 @@
     padding: 40px 10px 30px 10px;
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+}
+@media screen and (min-width: 1108px) and (max-width: 1240px) {
+  .movies-cardlist__movies-list {
+    gap: 30px 65px;
   }
 }

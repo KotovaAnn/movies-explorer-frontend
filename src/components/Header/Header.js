@@ -1,5 +1,3 @@
-import {useContext} from 'react';
-import { CurrentLoggedInContext } from '../../contexts/CurrentLoggedInContext';
 import { useLocation } from 'react-router-dom';
 import LogoLink from '../LogoLink/LogoLink';
 import AuthNavigation from '../AuthNavigation/AuthNavigation';
@@ -7,12 +5,10 @@ import Navigation from '../Navigation/Navigation';
 
 function Header(props) {
   const location = useLocation();
-  const currentLoggedIn = useContext(CurrentLoggedInContext);
-
   return (
     <header>
       {
-        (currentLoggedIn === true && (location.pathname === "/" || location.pathname === "/movies" || location.pathname === "/saved-movies" || location.pathname === "/profile")) ? (
+        ((props.loggedIn) && (location.pathname === "/" || location.pathname === "/movies" || location.pathname === "/saved-movies" || location.pathname === "/profile")) ? (
           <div className="header__content">
             <LogoLink classLink="logolink "/>
             <Navigation onOpenMenu={props.onOpenMenu}/>

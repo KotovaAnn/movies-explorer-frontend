@@ -115,14 +115,14 @@ function AuthForm(props) {
           </span>
       </div>
       <button 
-        className={
-          `
+        className=
+        {`
            ${!(errorEmail || errorName || errorPassword) ? "auth-form__btn" : "auth-form__btn_no-active"}
            ${(location.pathname === '/signup') ? "auth-form__signup-btn" : "auth-form__signin-btn"}
-          `
-        }
-        type="submit"
-        >{props.buttonName}</button>
+        `}
+        type="submit">
+          {props.buttonName}
+        </button>
     </form>
   )
 }
