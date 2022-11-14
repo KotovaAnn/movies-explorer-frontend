@@ -273,14 +273,14 @@ function App() {
           setIsNoFoundMovies(true);
         } else {
           setIsNoFoundMovies(false);
-          if (windowWidth >= 1280) {
-            setMoviesData(foundMovies.slice(0, 12));
+          if (windowWidth >= LARGEST_SIZE) {
+            setMoviesData(foundMovies.slice(ZERO_NUMBER, RENDER_MOVIES_LARGE));
             setMoreCards(3);
-          } else if (windowWidth > 480 && windowWidth < 1280) {
-            setMoviesData(foundMovies.slice(0, 8));
+          } else if (windowWidth > SMALL_SIZE && windowWidth < LARGEST_SIZE) {
+            setMoviesData(foundMovies.slice(ZERO_NUMBER, RENDER_MOVIES_MEDIUM));
             setMoreCards(2);
-          } else if (windowWidth <= 480) {
-            setMoviesData(foundMovies.slice(0, 5));
+          } else if (windowWidth <= SMALL_SIZE) {
+            setMoviesData(foundMovies.slice(ZERO_NUMBER, RENDER_MOVIES_SMALL));
             setMoreCards(2);
           }
         }
@@ -290,17 +290,16 @@ function App() {
   useEffect(() => {
     const foundMovies = JSON.parse(localStorage.getItem('found-movies'));
     if (foundMovies === null) {
-      //setMoviesData([]);
       return;
     }
-    if (windowWidth >= 1280) {
-      setMoviesData(foundMovies.slice(0, 12));
+    if (windowWidth >= LARGEST_SIZE) {
+      setMoviesData(foundMovies.slice(ZERO_NUMBER, RENDER_MOVIES_LARGE));
       setMoreCards(3);
-    } else if (windowWidth > 480 && windowWidth < 1280) {
-      setMoviesData(foundMovies.slice(0, 8));
+    } else if (windowWidth > SMALL_SIZE && windowWidth < LARGEST_SIZE) {
+      setMoviesData(foundMovies.slice(ZERO_NUMBER, RENDER_MOVIES_MEDIUM));
       setMoreCards(2);
-    } else if (windowWidth <= 480) {
-      setMoviesData(foundMovies.slice(0, 5));
+    } else if (windowWidth <= SMALL_SIZE) {
+      setMoviesData(foundMovies.slice(ZERO_NUMBER, RENDER_MOVIES_SMALL));
       setMoreCards(2);
     }
   }, [isFoundMovies, cheCkShortFilms]);
@@ -496,7 +495,13 @@ function App() {
             </Route>
 
           </Switch>
-          <InfoTooltip isOpen={isInfotooltip} onClose={handleCloseInfotooltip} registered={registered} loggedIn={loggedIn} isEditProfile={isEditProfile} />
+          <InfoTooltip 
+            isOpen={isInfotooltip}
+            onClose={handleCloseInfotooltip}
+            registered={registered}
+            loggedIn={loggedIn}
+            isEditProfile={isEditProfile} 
+            />
           <BurgerMenu isOpenMenu={isOpenMenu} onCloseMenu={onCloseMenu}/>
           <Footer />
 
