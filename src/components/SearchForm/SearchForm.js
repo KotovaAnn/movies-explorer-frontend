@@ -36,12 +36,18 @@ function SearchForm(props) {
         maxLength="30"
         value={movie || ""}
         onChange={handleChange}
+        disabled={props.isLoading}
         />
-      <FilterCheckbox filterMovies={props.filterMovies} filterSavedMovies={props.filterSavedMovies} movie={movie}/>
+      <FilterCheckbox 
+        filterMovies={props.filterMovies}
+        filterSavedMovies={props.filterSavedMovies}
+        checked={props.checked}
+        handleCheckShortFilms={props.handleCheckShortFilms}
+        movie={movie}/>
       {
-        noKeyword && <span className="search-form__validate-error">Название фильма не может быть пустым</span>
+        noKeyword && <span className="search-form__validate-error">Нужно ввести ключевое слово</span>
       }
-      <button className="search-form__btn" type="submit"></button>
+      <button className="search-form__btn" type="submit" disabled={props.isLoading}></button>
       <div className="search-form__border"></div>
     </form>
   )

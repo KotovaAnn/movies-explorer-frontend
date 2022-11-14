@@ -7,11 +7,16 @@ function Movies(props) {
   function handleSubmit(data) {
     props.onSubmit(data);
   }
-
+  
   return(
     <main className="movies">
 
-      <SearchForm onSubmit={handleSubmit} filterMovies={props.filterMovies}/>
+      <SearchForm 
+        onSubmit={handleSubmit}
+        filterMovies={props.filterMovies}
+        checked={props.checked}
+        handleCheckShortFilms={props.handleCheckShortFilms}
+        isLoading={props.isLoading} />
 
       {props.isLoading && (
         <Preloader />

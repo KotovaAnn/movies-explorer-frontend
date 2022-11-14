@@ -17,6 +17,9 @@ function Profile(props) {
 
   function handleNameChange(evt) {
     setName(evt.target.value);
+    if(evt.target.value === currentUser.name) {
+      setFormIsValid(false);
+    }
     if (!evt.target.checkValidity()) {
       setErrorName(evt.target.validationMessage);
       setFormIsValid(false);
@@ -28,6 +31,9 @@ function Profile(props) {
 
   function handleEmailChange(evt) {
     setEmail(evt.target.value);
+    if(evt.target.value === currentUser.email) {
+      setFormIsValid(false);
+    }
     if (!evt.target.checkValidity()) {
       setErrorEmail(evt.target.validationMessage);
       setFormIsValid(false);
@@ -38,6 +44,7 @@ function Profile(props) {
   }
 
   function handleSubmit(evt) {
+    console.log('rjd')
     evt.preventDefault();
     props.onSubmitButton();
     props.onUpdateUser({
@@ -48,7 +55,6 @@ function Profile(props) {
   }
 
   function handleEditProfile() {
-    console.log(currentUser)
     setIsEdited(!isEdited);
   }
 

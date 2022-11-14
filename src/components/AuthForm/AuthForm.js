@@ -88,6 +88,7 @@ function AuthForm(props) {
             required
             type="email"
             name="authInputEmail"
+            pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
             value={email || ""}
             onChange={handleEmailChange}
             />
@@ -120,7 +121,8 @@ function AuthForm(props) {
            ${!(errorEmail || errorName || errorPassword) ? "auth-form__btn" : "auth-form__btn_no-active"}
            ${(location.pathname === '/signup') ? "auth-form__signup-btn" : "auth-form__signin-btn"}
         `}
-        type="submit">
+        type="submit"
+        disabled={!formIsValid}>
           {props.buttonName}
         </button>
     </form>

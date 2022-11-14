@@ -9,7 +9,7 @@ function SavedMovies(props) {
 
   return(
     <main className="saved-movies">
-      <SearchForm onSubmit={handleSubmit} filterSavedMovies={props.filterSavedMovies} />
+      <SearchForm onSubmit={handleSubmit} filterSavedMovies={props.filterSavedMovies} handleCheckShortFilms={props.handleCheckShortFilms}/>
 
       {props.isLoading && (
         <Preloader />

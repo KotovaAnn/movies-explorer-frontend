@@ -2,43 +2,33 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 function FilterCheckbox(props) {
-  const [onFocus, setOnFocus] = useState(false);
-  const [checkedShortFilms, setCheckedShortFilms] = useState(false);
   const location = useLocation();
-
-  function handleOnFocus() {
-    setOnFocus(!onFocus);
-  };
-
-  function handleOffFocus() {
-    setOnFocus(false);
-  };
+  const [cheked, setCheked] = useState(false);
 
   const handleCheckShortFilms = () => {
-    setCheckedShortFilms(!checkedShortFilms);
-    if(location.pathname === '/movies' && props.movie) {
-      props.filterMovies(props.movie, !checkedShortFilms);
-    } else if(location.pathname === '/saved-movies' && props.movie) {
-      props.filterSavedMovies(props.movie, !checkedShortFilms);
+    setCheked(!cheked);
+
+    if(location.pathname === '/movies') {
+      props.handleCheckShortFilms();
+      props.filterMovies(props.movie);
+    } else if(location.pathname === '/saved-movies') {
+      props.filterSavedMovies(props.movie, !cheked);
     }
   };
- 
+
   return (
     <div className="filter-checkbox">
       <label
       className="filter-checkbox__label"
-      onFocus={handleOnFocus}
-      onBlur={handleOffFocus}
       >
       <input 
         className="filter-checkbox__input"
         type="checkbox"
         role="switch"
-        onFocus={handleOnFocus}
-        onBlur={handleOffFocus}
         id='filter-checkbox-shortfilm'
         name='filterShortfilm'
-        onClick={handleCheckShortFilms}
+        onChange={handleCheckShortFilms}
+        checked={props.checked}
         />
         <span className="filter-checkbox__slider"/>
         Короткометражки
