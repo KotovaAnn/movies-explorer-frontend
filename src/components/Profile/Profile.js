@@ -44,14 +44,17 @@ function Profile(props) {
   }
 
   function handleSubmit(evt) {
-    console.log('rjd')
     evt.preventDefault();
-    props.onSubmitButton();
-    props.onUpdateUser({
-      name,
-      email,
-    });
-    setIsEdited(!isEdited);
+    if(name !== currentUser.name || email !== currentUser.email) {
+      props.onSubmitButton();
+      props.onUpdateUser({
+        name,
+        email,
+      });
+      setIsEdited(!isEdited);
+    } else {
+      setFormIsValid(false);
+    }
   }
 
   function handleEditProfile() {

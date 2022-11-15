@@ -55,6 +55,7 @@ function App() {
   const [foundSavedMoviesData, setFoundSavedMoviesData] = useState([]);
   const [isNoFoundSavedMovies, setIsNoFoundSavedMovies] = useState(false);
   const [errorGetSavedMovies, setErrorGetSavedMovies] = useState(false);
+  const [emptySeach, setEmptySeach] = useState(false);
 
   const [cheCkShortFilms, setCheckShortFilms] = useState(JSON.parse(localStorage.getItem('checkbox')));
  
@@ -67,7 +68,6 @@ function App() {
           setRegistered(true);
           setIsInfotooltip(true);
           handleLogin(name, email, password);
-          history.push('/movies');
         } 
       })
       .catch(err => {
@@ -171,6 +171,8 @@ function App() {
     history.listen((location) => {
       localStorage.setItem('checkboxSaveFilm', false);
       setFoundSavedMoviesData([]);
+      const savedMovies = JSON.parse(localStorage.getItem('saved-movies'));
+      setSavedMoviesData(savedMovies);
     })
   }, [history]);
 
@@ -229,6 +231,7 @@ function App() {
   function handleSearchSavedMovies(keyWord = {}) {
     if (keyWord === "") {
       setFoundSavedMoviesData([]);
+      setEmptySeach(false);
       return;
     }
     if(savedMoviesData.length !== 0) {
@@ -411,7 +414,13 @@ function App() {
       );
       localStorage.setItem('saved-movies', JSON.stringify(localSavedFilmsData.filter((m) => m._id !== movie._id && res)));
       if(foundSavedMoviesData.length !== 0) {
-        setFoundSavedMoviesData(foundSavedMoviesData.filter((m) => m._id !== movie._id && res));
+        const filtredFoundSavedMovies = foundSavedMoviesData.filter((m) => m._id !== movie._id && res);
+        if (filtredFoundSavedMovies.length === 0) {
+          setEmptySeach(true);
+        } else {
+          setEmptySeach(false);
+        }
+        setFoundSavedMoviesData(filtredFoundSavedMovies);
       }
     })
     .catch(err => {
@@ -478,6 +487,7 @@ function App() {
               isNoFoundSavedMovies={isNoFoundSavedMovies}
               errorGetSavedMovies={errorGetSavedMovies}
               deleteSavedMovie={deleteSavedMovie}
+              emptySeach={emptySeach}
               />
 
             <ProtectedRoute

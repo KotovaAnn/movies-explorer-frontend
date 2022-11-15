@@ -6,6 +6,7 @@ function SavedMovies(props) {
   function handleSubmit(data) {
     props.onSubmit(data);
   }
+  console.log(props.emptySeach)
 
   return(
     <main className="saved-movies">
@@ -22,9 +23,13 @@ function SavedMovies(props) {
       {
         (!props.isLoading && props.isNoFoundSavedMovies) ? 
         (<p className="saved-movies__not-found-movies">Сохраненных фильмов нет</p>) :
+        (props.emptySeach) ?
+        (<p className="saved-movies__not-found-movies">Ничего не найдено</p>) :
         (
           <MoviesCardList
-            moviesData={(props.foundSavedMoviesData.length !== 0) ? props.foundSavedMoviesData : props.savedMoviesData}
+            moviesData={
+              (props.foundSavedMoviesData.length !== 0 || props.emptySeach) ? props.foundSavedMoviesData : props.savedMoviesData
+            }
             isNoFoundSavedMovies={props.isNoFoundSavedMovies}
             deleteSavedMovie={props.deleteSavedMovie}
             />

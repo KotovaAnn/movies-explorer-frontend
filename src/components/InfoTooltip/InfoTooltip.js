@@ -13,6 +13,8 @@ function InfoTooltip(props) {
                 (props.isEditProfile) ? "Профиль успешно изменен!" : "Что-то пошло не так! Попробуйте ещё раз."
               ) : (location.pathname === "/signin") ? (
                 (!props.loggedIn) && "Что-то пошло не так! Попробуйте ещё раз."
+              ) : (location.pathname === "/movies" && props.registered) ? (
+                "Вы успешно зарегистрировались!"
               ) : ('')
             }
             </h2>
