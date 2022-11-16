@@ -173,6 +173,7 @@ function App() {
     history.listen((location) => {
       localStorage.setItem('checkboxSaveFilm', false);
       setFoundSavedMoviesData([]);
+      setEmptySeach(false);
     })
   }, [history]);
 
@@ -180,7 +181,6 @@ function App() {
     history.listen((location) => {
       const savedMovies = JSON.parse(localStorage.getItem('saved-movies'));
       setSavedMoviesData(savedMovies);
-      console.log(savedMovies)
       if(savedMovies) {
         if(savedMovies.length === 0) {
           setIsNoFoundSavedMovies(true);
