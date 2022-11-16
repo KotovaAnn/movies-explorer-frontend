@@ -6,8 +6,7 @@ function SavedMovies(props) {
   function handleSubmit(data) {
     props.onSubmit(data);
   }
-  console.log(props.emptySeach)
-
+ 
   return(
     <main className="saved-movies">
       <SearchForm onSubmit={handleSubmit} filterSavedMovies={props.filterSavedMovies} handleCheckShortFilms={props.handleCheckShortFilms}/>

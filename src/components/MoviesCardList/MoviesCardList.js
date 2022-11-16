@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 function MoviesCardList(props) {
   const location = useLocation();
   const films = props.moviesData;
-  const foundMovies = JSON.parse(localStorage.getItem('found-movies'))
+  const foundMovies = JSON.parse(localStorage.getItem('found-movies')) || [];
 
   return(
     <section className='movies-cardlist'>
@@ -25,9 +25,8 @@ function MoviesCardList(props) {
       }
 
       {
-        (location.pathname === '/movies' && ((films.length !== 0) && (films.length < foundMovies.length))) ? (
-          <button className='movies-cardlist__show-more' onClick={props.handleShowMore}>Еще</button>
-        ) : ""
+        (location.pathname === '/movies' && films !== null) ? ((films.length < foundMovies.length) ? 
+        (<button className='movies-cardlist__show-more' onClick={props.handleShowMore}>Еще</button>) : ("")) :  ("")
       }
       
     </section>

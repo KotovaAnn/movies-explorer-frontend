@@ -9,17 +9,22 @@ function Profile(props) {
   const [email, setEmail] = useState("");
   const [errorName, setErrorName] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
-
+  
   useEffect(() => {
     setName(currentUser.name);
     setEmail(currentUser.email);
   }, [currentUser]);
 
-  function handleNameChange(evt) {
-    setName(evt.target.value);
-    if(evt.target.value === currentUser.name) {
+  useEffect(() => { 
+    if (name !== currentUser.name || email !== currentUser.email) {
+      setFormIsValid(true);
+    } else {
       setFormIsValid(false);
     }
+  }, [currentUser, name, email]);
+
+  function handleNameChange(evt) {
+    setName(evt.target.value);
     if (!evt.target.checkValidity()) {
       setErrorName(evt.target.validationMessage);
       setFormIsValid(false);
@@ -31,9 +36,6 @@ function Profile(props) {
 
   function handleEmailChange(evt) {
     setEmail(evt.target.value);
-    if(evt.target.value === currentUser.email) {
-      setFormIsValid(false);
-    }
     if (!evt.target.checkValidity()) {
       setErrorEmail(evt.target.validationMessage);
       setFormIsValid(false);
@@ -45,16 +47,12 @@ function Profile(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    if(name !== currentUser.name || email !== currentUser.email) {
-      props.onSubmitButton();
-      props.onUpdateUser({
-        name,
-        email,
-      });
-      setIsEdited(!isEdited);
-    } else {
-      setFormIsValid(false);
-    }
+    props.onSubmitButton();
+    props.onUpdateUser({
+      name,
+      email,
+    });
+    setIsEdited(!isEdited);
   }
 
   function handleEditProfile() {
@@ -110,9 +108,9 @@ function Profile(props) {
         </fieldset>
         {isEdited ? (
             <button
-              className={(errorEmail || errorName) ? "profile__save-button_no-active" : "profile__save-button"}
+              className={(errorEmail || errorName || formIsValid === false) ? "profile__save-button_no-active" : "profile__save-button"}
               type="submit"
-              disabled={!formIsValid}>
+              disabled={errorEmail || errorName || formIsValid === false}>
               {props.renderLoading}
               </button>
           ) : (

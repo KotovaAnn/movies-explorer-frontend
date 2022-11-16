@@ -100,6 +100,7 @@ function App() {
         setLoggedIn(false);
         localStorage.setItem('loggedIn', false);
         setIsLoading(false);
+        setMoviesData([]);
         localStorage.clear();
         history.push('/');
       })
@@ -117,6 +118,7 @@ function App() {
       .then(res => {
         setCurrentUser(res);
         localStorage.setItem('loggedIn', true);
+        getSavedMovies();
       })
       .catch(err => {
         console.log(err);
@@ -171,10 +173,23 @@ function App() {
     history.listen((location) => {
       localStorage.setItem('checkboxSaveFilm', false);
       setFoundSavedMoviesData([]);
-      const savedMovies = JSON.parse(localStorage.getItem('saved-movies'));
-      setSavedMoviesData(savedMovies);
     })
   }, [history]);
+
+  useEffect(() => {
+    history.listen((location) => {
+      const savedMovies = JSON.parse(localStorage.getItem('saved-movies'));
+      setSavedMoviesData(savedMovies);
+      console.log(savedMovies)
+      if(savedMovies) {
+        if(savedMovies.length === 0) {
+          setIsNoFoundSavedMovies(true);
+        } else {
+          setIsNoFoundSavedMovies(false);
+        }
+      }
+    })
+  }, [history, savedMoviesData]);
 
   function onSubmitButton() {
     setIsLoading(true);
@@ -261,7 +276,6 @@ function App() {
       }
       setFoundSavedMoviesData(foundSavedMovies);
     }
-
   }, []);
 
   const filterMovies = useCallback((keyWord) => {
@@ -388,8 +402,8 @@ function App() {
     } else {
       mainApi.saveMovie(movieCard)
         .then((res) => {
-          setSavedMoviesData([res, ...savedMoviesData]);
           localStorage.setItem('saved-movies', JSON.stringify([res, ...savedMoviesData]));
+          setSavedMoviesData([res, ...savedMoviesData]);
         })
         .catch(err => {
           console.log(err);
@@ -407,12 +421,15 @@ function App() {
   function deleteSavedMovie(movieCard) {
     const localSavedFilmsData = JSON.parse(localStorage.getItem('saved-movies'));
     const movie = localSavedFilmsData.find((i) => i.movieId === movieCard.movieId);
+
     mainApi.deleteSavedMovie(movie._id)
     .then((res) => {
-      setSavedMoviesData(
-        localSavedFilmsData.filter((m) => m._id !== movie._id && res),
-      );
-      localStorage.setItem('saved-movies', JSON.stringify(localSavedFilmsData.filter((m) => m._id !== movie._id && res)));
+      const savedMoviesWithoutCard = localSavedFilmsData.filter((m) => m._id !== movie._id && res);
+      localStorage.setItem('saved-movies', JSON.stringify(savedMoviesWithoutCard));
+      setSavedMoviesData(savedMoviesWithoutCard);
+      if(savedMoviesWithoutCard.length === 0) {
+        setIsNoFoundSavedMovies(true);
+      }
       if(foundSavedMoviesData.length !== 0) {
         const filtredFoundSavedMovies = foundSavedMoviesData.filter((m) => m._id !== movie._id && res);
         if (filtredFoundSavedMovies.length === 0) {

@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import searchIcon from '../../images/search-icon.svg';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm(props) {
   const [movie, setMovie] = useState("");
   const [noKeyword, setIsNoKeyword] = useState(false);
+  const location = useLocation();
+  const keywords = localStorage.getItem('keyWord');
+  const foundMovies = localStorage.getItem('found-movies');
 
   function handleChange(evt){
     setMovie(evt.target.value);
@@ -23,6 +27,12 @@ function SearchForm(props) {
     props.onSubmit(movie);
   };
   
+  useEffect(()=> {
+    if(location.pathname === '/movies' && (foundMovies || foundMovies !== null)) {
+      setMovie(keywords);
+    }
+  }, [keywords])
+
   return (
     <form className="search-form" onSubmit={handleSubmit} noValidate>
       <img className="search-form__icon" src={searchIcon} alt="Лупа"/>
